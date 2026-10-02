@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defence Command</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- HOME -->
+    <section id="homeScreen" class="home-screen">
+
+        <div class="pixel-grid"></div>
+
+        <div class="home-content">
+
+            <div class="pixel-tank" aria-hidden="true">
+                <div class="tank-barrel"></div>
+                <div class="tank-top"></div>
+                <div class="tank-body"></div>
+                <div class="tank-track track-left"></div>
+                <div class="tank-track track-right"></div>
+            </div>
+
+            <div class="eyebrow">TACTICAL DEFENCE SIMULATION</div>
+
+            <h1>DEFENCE<br><span>COMMAND</span></h1>
+
+            <p class="home-description">
+                COMMAND YOUR FORCES.<br>
+                DEFEND THE BASE. SURVIVE.
+            </p>
+
+            <div class="home-stats">
+                <div>
+                    <strong>01</strong>
+                    <span>BATTLEFIELD</span>
+                </div>
+                <div>
+                    <strong>03</strong>
+                    <span>UNIT TYPES</span>
+                </div>
+                <div>
+                    <strong>∞</strong>
+                    <span>ENEMY WAVES</span>
+                </div>
+            </div>
+
+            <button id="startButton" class="start-button">
+                <span>▶</span>
+                START MISSION
+            </button>
+
+            <div class="home-footer">
+                DEFENCE COMMAND — V1.0
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- GAME -->
+    <section id="gameScreen" class="game-screen hidden">
+
+        <header class="topbar">
+
+            <div class="game-title">
+                <span class="title-mark">▰</span>
+                <div>
+                    <strong>DEFENCE COMMAND</strong>
+                    <small>FIELD OPERATIONS</small>
+                </div>
+            </div>
+
+            <div class="hud">
+
+                <div class="hud-item">
+                    <small>DEFENCE</small>
+                    <strong id="defencePoints">1000</strong>
+                </div>
+
+                <div class="hud-item">
+                    <small>BASE HP</small>
+                    <strong id="baseHealth">1000</strong>
+                </div>
+
+                <div class="hud-item">
+                    <small>ENEMIES</small>
+                    <strong id="enemyCount">0</strong>
+                </div>
+
+                <div class="hud-item">
+                    <small>SCORE</small>
+                    <strong id="score">0</strong>
+                </div>
+
+                <div class="hud-item">
+                    <small>BEST</small>
+                    <strong id="bestScore">0</strong>
+                </div>
+
+                <div class="hud-item">
+                    <small>TIME</small>
+                    <strong id="gameTime">0s</strong>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <main class="game-layout">
+
+            <div id="battlefield" class="battlefield">
+
+                <div class="grid"></div>
+
+                <div class="road road-a"></div>
+                <div class="road road-b"></div>
+
+                <div class="tree tree-a">♣</div>
+                <div class="tree tree-b">♣</div>
+                <div class="tree tree-c">♣</div>
+                <div class="tree tree-d">♣</div>
+
+                <div class="building building-a">HQ</div>
+                <div class="building building-b">RADAR</div>
+
+                <div id="base" class="base">
+                    <div class="base-ring"></div>
+                    <div class="base-core">
+                        BASE
+                    </div>
+                    <div class="base-name">COMMAND BASE</div>
+                    <div class="base-bar">
+                        <div id="baseHealthBar"></div>
+                    </div>
+                </div>
+
+                <div id="effects"></div>
+                <div id="units"></div>
+                <div id="enemies"></div>
+                <div id="projectiles"></div>
+
+                <div id="moveMarker" class="move-marker hidden"></div>
+
+                <div id="battleMessage" class="battle-message hidden"></div>
+
+            </div>
+
+
+            <aside class="command-panel">
+
+                <div class="panel-title">
+                    <strong>COMMAND UNITS</strong>
+                    <small>SELECT UNIT TO DEPLOY</small>
+                </div>
+
+                <button class="unit-button" data-unit="infantry">
+                    <div class="unit-symbol infantry-symbol">♟</div>
+                    <div>
+                        <strong>INFANTRY</strong>
+                        <span>Ground unit</span>
+                        <b>100 DP</b>
+                    </div>
+                </button>
+
+                <button class="unit-button" data-unit="tank">
+                    <div class="unit-symbol tank-symbol">▣</div>
+                    <div>
+                        <strong>TANK</strong>
+                        <span>Armoured unit</span>
+                        <b>250 DP</b>
+                    </div>
+                </button>
+
+                <button class="unit-button" data-unit="fighter">
+                    <div class="unit-symbol fighter-symbol">▲</div>
+                    <div>
+                        <strong>FIGHTER</strong>
+                        <span>Air unit</span>
+                        <b>400 DP</b>
+                    </div>
+                </button>
+
+                <div class="selection-box">
+                    <small>STATUS</small>
+                    <strong id="selectionText">SELECT A UNIT</strong>
+                </div>
+
+                <div class="orders">
+                    <strong>FIELD ORDERS</strong>
+                    <p>01 — Select a unit</p>
+                    <p>02 — Click battlefield to deploy</p>
+                    <p>03 — Select deployed unit</p>
+                    <p>04 — Click battlefield to move</p>
+                    <p>05 — Units attack automatically</p>
+                </div>
+
+                <button id="restartButton" class="restart-button">
+                    RESTART MISSION
+                </button>
+
+            </aside>
+
+        </main>
+
+    </section>
+
+
+    <!-- GAME OVER -->
+    <section id="gameOverScreen" class="game-over hidden">
+
+        <div class="game-over-card">
+
+            <div class="warning-icon">!</div>
+
+            <div class="eyebrow">MISSION REPORT</div>
+
+            <h2>BASE DESTROYED</h2>
+
+            <p>DEFENCE LINE COLLAPSED</p>
+
+            <div class="results">
+
+                <div>
+                    <small>SCORE</small>
+                    <strong id="finalScore">0</strong>
+                </div>
+
+                <div>
+                    <small>BEST</small>
+                    <strong id="finalBest">0</strong>
+                </div>
+
+                <div>
+                    <small>SURVIVED</small>
+                    <strong id="finalTime">0s</strong>
+                </div>
+
+            </div>
+
+            <button id="gameOverRestart" class="start-button">
+                ▶ RESTART MISSION
+            </button>
+
+        </div>
+
+    </section>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
